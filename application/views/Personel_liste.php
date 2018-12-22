@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Personel rowesi</title>
+	<title>Personel Listesi</title>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>">
 </head>
 <body>
@@ -10,6 +10,9 @@
 	<div class="container">
 		<h3 class="text-center" style="margin-top: 20px">Personel Listesi</h3>
 		<hr>
+
+		<a href="<?php echo base_url("Personel/insert_form") ?>" class="btn btn-primary btn-sm">Yeni Ekle</a>
+		<br><br>
 		<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<th>#id</th>

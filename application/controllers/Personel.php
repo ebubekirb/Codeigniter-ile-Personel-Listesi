@@ -21,7 +21,7 @@ class Personel extends CI_Controller{
 
 	public function insert_form(){
 
-
+		$this->load->view("Personel_ekle");
 	}
 
 
