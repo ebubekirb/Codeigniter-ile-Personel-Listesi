@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Personel Listesi</title>
+	<title>Personel rowesi</title>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>">
 </head>
 <body>
-	
 	
 	<div class="container">
 		<h3 class="text-center" style="margin-top: 20px">Personel Listesi</h3>
@@ -22,18 +21,20 @@
 			<td>İşlemler</td>
 		</thead>
 		<tbody>
+			<?php foreach($list as $row){ ?>
 			<tr>
-				<td>1</td>
-				<td>Emre İrem</td>
-				<td>eirem@gmail.com</td>
-				<td>0544 444 44 44</td>
-				<td>Yazılım</td>
-				<td>İstanbul</td>
+				<td><?php echo $row->id; ?></td>
+				<td><?php echo $row->personel_ad; ?></td>
+				<td><?php echo $row->email; ?></td>
+				<td><?php echo $row->telefon ?></td>
+				<td><?php echo $row->departman; ?></td>
+				<td><?php echo $row->adres; ?></td>
 				<td>
 					<a class="btn btn-sm btn-warning" href="#">Düzenle</a>
 					<a class="btn btn-sm btn-danger" href="#">Sil</a>
 				</td>
 			</tr>
+			<?php } ?>
 		</tbody>
 	</table>
 	</div>

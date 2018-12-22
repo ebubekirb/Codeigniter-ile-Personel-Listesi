@@ -13,9 +13,9 @@ class Personel extends CI_Controller{
 
 		$list = $this->Personel_model->get_all();
 
-		print_r($list);
+		$viewData["list"] = $list;
 
-		$this->load->view("Personel_liste");
+		$this->load->view("Personel_liste", $viewData);
 	}
 
 
