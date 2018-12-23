@@ -10,9 +10,11 @@ class Personel_model extends CI_Model{
 	}
 
 
-	public function get(){
+	public function get($where){
 
+		$row = $this->db->where($where)->get("personel")->row();
 
+		return $row;
 	}
 
 
@@ -24,9 +26,16 @@ class Personel_model extends CI_Model{
 	}
 
 
-	public function update(){
+	public function update($id){
 
+		// $row = $this->db->where("id", $id)->get("personel")->row();
 
+		$viewData = new stdClass();
+
+		$viewData->row = $row;
+		$this->load->view("Personel_duzenle", $viewData);
+
+		// return $query;
 	}
 
 

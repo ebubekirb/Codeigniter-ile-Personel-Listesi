@@ -56,15 +56,53 @@ class Personel extends CI_Controller{
 	}
 
 
-	public function update_form(){
+	public function update_form($id){
+
+		$where = array("id" => $id);
+
+		$personel = $this->Personel_model->get($where);
+
+		$viewData["personel"] = $personel;
+		
+		$this->load->view("Personel_duzenle", $viewData);
 
 
 	}
 
 
-	public function update(){
+	public function update($id){
 
+		$personel_ad 	= $this->input->post("personel_ad");
+		$email 			= $this->input->post("email");
+		$telefon 		= $this->input->post("telefon");
+		$departman 		= $this->input->post("departman");
+		$adres 			= $this->input->post("adres");
 
+		$data = array(
+
+			"personel_ad" 	=> $personel_ad,
+			"email" 		=> $email,
+			"telefon" 		=> $telefon,
+			"departman" 	=> $departman,
+			"adres" 		=> $adres
+		);
+
+		$update = $this
+			->db
+			->where("id", $id)
+			->update("personel", $data);
+
+			echo $update;
+
+			if ($update) {
+				
+				redirect(base_url("personel"));
+			}
+
+			else{
+
+				echo "DDüzenleme işlemi sırasında bir problem oluştu..";
+			}
 	}
 
 
