@@ -59,50 +59,41 @@ class Personel extends CI_Controller{
 	public function update_form($id){
 
 		$where = array("id" => $id);
-
 		$personel = $this->Personel_model->get($where);
-
 		$viewData["personel"] = $personel;
-		
 		$this->load->view("Personel_duzenle", $viewData);
-
-
 	}
 
 
 	public function update($id){
 
-		$personel_ad 	= $this->input->post("personel_ad");
-		$email 			= $this->input->post("email");
-		$telefon 		= $this->input->post("telefon");
-		$departman 		= $this->input->post("departman");
-		$adres 			= $this->input->post("adres");
+		$where = array(
+
+			"id" => $id
+		);
+
 
 		$data = array(
 
-			"personel_ad" 	=> $personel_ad,
-			"email" 		=> $email,
-			"telefon" 		=> $telefon,
-			"departman" 	=> $departman,
-			"adres" 		=> $adres
+			"personel_ad" 	=> $this->input->post("personel_ad"),
+			"email" 		=> $this->input->post("email"),
+			"telefon" 		=> $this->input->post("telefon"),
+			"departman" 	=> $this->input->post("departman"),
+			"adres" 		=> $this->input->post("adres")
 		);
 
-		$update = $this
-			->db
-			->where("id", $id)
-			->update("personel", $data);
+		$update = $this->Personel_model->update($where, $data);
 
-			echo $update;
 
-			if ($update) {
-				
-				redirect(base_url("personel"));
-			}
+		if ($update) {
+			
+			echo "Güncelleme işlemi başarilidir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+		}
 
-			else{
+		else{
 
-				echo "DDüzenleme işlemi sırasında bir problem oluştu..";
-			}
+			echo "Güncelleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+		}
 	}
 
 

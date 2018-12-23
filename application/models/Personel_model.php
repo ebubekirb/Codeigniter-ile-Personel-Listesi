@@ -5,7 +5,6 @@ class Personel_model extends CI_Model{
 	public function get_all(){
 
 		$result = $this->db->get("personel")->result();
-
 		return $result;
 	}
 
@@ -13,7 +12,6 @@ class Personel_model extends CI_Model{
 	public function get($where){
 
 		$row = $this->db->where($where)->get("personel")->row();
-
 		return $row;
 	}
 
@@ -21,21 +19,14 @@ class Personel_model extends CI_Model{
 	public function insert($data){
 
 		$insert = $this->db->insert("personel", $data);
-
 		return $insert;
 	}
 
 
-	public function update($id){
+	public function update($where, $data){
 
-		// $row = $this->db->where("id", $id)->get("personel")->row();
-
-		$viewData = new stdClass();
-
-		$viewData->row = $row;
-		$this->load->view("Personel_duzenle", $viewData);
-
-		// return $query;
+	    $update = $this->db->where($where)->update("personel", $data);
+		return $update;
 	}
 
 
