@@ -16,9 +16,11 @@ class Personel_model extends CI_Model{
 	}
 
 
-	public function insert(){
+	public function insert($data){
 
+		$insert = $this->db->insert("personel", $data);
 
+		return $insert;
 	}
 
 

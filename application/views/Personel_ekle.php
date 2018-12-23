@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h3>Personel Ekle</h3>
-				<form action="">
+				<form action="<?php echo base_url("Personel/insert"); ?>" method="post">
 					<div class="form-group">
 						<label for=""><strong>Personelin Adı</strong></label>
 						<input type="text" class="form-control" name="personel_ad">

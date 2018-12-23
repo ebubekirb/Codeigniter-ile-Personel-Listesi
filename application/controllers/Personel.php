@@ -27,7 +27,32 @@ class Personel extends CI_Controller{
 
 	public function insert(){
 
+		$personel_ad 	= $this->input->post("personel_ad");
+		$email 			= $this->input->post("email");
+		$telefon 		= $this->input->post("telefon");
+		$departman 		= $this->input->post("departman");
+		$adres 			= $this->input->post("adres");
 
+		$data = array(
+
+			"personel_ad" 	=> $personel_ad,
+			"email" 		=> $email,
+			"telefon" 		=> $telefon,
+			"departman" 	=> $departman,
+			"adres" 		=> $adres
+		);
+
+		$insert = $this->Personel_model->insert($data);
+
+		if ($insert) {
+			
+			echo "Ekleme işlemi başarilidir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+		}
+
+		else{
+
+			echo "Ekleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+		}
 	}
 
 
