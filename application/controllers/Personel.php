@@ -97,15 +97,24 @@ class Personel extends CI_Controller{
 	}
 
 
-	public function delete(){
+	public function delete($id){
 
+		$where = array("id" => $id);
+		$delete = $this->Personel_model->delete($where);
 
+		if ($delete) {
+			
+			redirect("personel");
+		}
 	}
 
 
-	public function order(){
+	public function order($field = "id", $order = "ASC"){
 
+		$list = $this->Personel_model->order_by($field, $order);
 
+		$viewData["list"] = $list;
+		$this->load->view("Personel_liste", $viewData);
 	}
 }
 

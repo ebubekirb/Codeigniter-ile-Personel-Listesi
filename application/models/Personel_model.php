@@ -30,15 +30,17 @@ class Personel_model extends CI_Model{
 	}
 
 
-	public function delete(){
+	public function delete($where){
 
-
+		$delete = $this->db->where($where)->delete("personel");
+		return $delete;
 	}
 
 
-	public function order_by(){
+	public function order_by($field, $order){
 
-
+		$result = $this->db->order_by($field, $order)->get("personel")->result();
+		return $result;
 	}
 }
 
