@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h3>Personel Ekle</h3>
-				<form action="<?php echo base_url("Personel/insert"); ?>" method="post">
+				<form action="<?php echo base_url("Personel/insert"); ?>" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for=""><strong>Personelin Adı</strong></label>
 						<input type="text" class="form-control" name="personel_ad">
@@ -31,6 +31,10 @@
 					<div class="form-group">
 						<label for=""><strong>Adresi</strong></label>
 						<input type="text" class="form-control" name="adres">
+					</div>
+					<div class="form-group">
+						<label for=""><strong>Personeli Resmi</strong></label><br>
+						<input type="file" class="" name="img_id">
 					</div>
 
 					<button type="submit" class="btn btn-outline-success">Kaydet</button>

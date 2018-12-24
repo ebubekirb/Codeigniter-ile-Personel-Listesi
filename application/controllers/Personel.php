@@ -32,27 +32,56 @@ class Personel extends CI_Controller{
 		$telefon 		= $this->input->post("telefon");
 		$departman 		= $this->input->post("departman");
 		$adres 			= $this->input->post("adres");
+		$img 			= $_FILES["img_id"]["name"];
 
-		$data = array(
+		if ($personel_ad && $email && $telefon && $departman && $adres && $img ) {
+			
+			$config["upload_path"] 		= "uploads/";
+			$config["allowed_types"] 	= "gif|jpg|png";
 
-			"personel_ad" 	=> $personel_ad,
-			"email" 		=> $email,
-			"telefon" 		=> $telefon,
-			"departman" 	=> $departman,
-			"adres" 		=> $adres
-		);
+			$this->load->library("upload", $config);
 
-		$insert = $this->Personel_model->insert($data);
+			if ($this->upload->do_upload("img_id")) {
 
-		if ($insert) {
+			$img_id = $this->upload->data("file_name");
+				
+			$data = array(
+
+				"personel_ad" 	=> $personel_ad,
+				"email" 		=> $email,
+				"telefon" 		=> $telefon,
+				"departman" 	=> $departman,
+				"adres" 		=> $adres,
+				"img_id"		=> $img_id
+			);
+
+			$insert = $this->Personel_model->insert($data);
+
+			if ($insert) {
 			
 			echo "Ekleme işlemi başarilidir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+			}
+
+			else{
+
+				echo "Ekleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+			}
+
+			}
+
+			else{
+
+				// resim yüklenirken sorun oluştu...
+				echo "resim yüklenirken sorun oluştu...";
+			}
 		}
 
 		else{
 
-			echo "Ekleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+			// Lütfen resim seçimi yapiniz...
+			echo "Lütfen boş alan bırakmayınız...";
 		}
+
 	}
 
 
