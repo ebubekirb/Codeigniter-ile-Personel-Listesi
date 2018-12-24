@@ -7,6 +7,13 @@ class Personel extends CI_Controller{
 		parent::__construct();
 
 		$this->load->model("Personel_model");
+
+		$user = $this->session->userdata("user");
+
+		if (!$user) {
+			
+			redirect(base_url());
+		}
 	}
 
 	public function index(){
