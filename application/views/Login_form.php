@@ -32,11 +32,12 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							Dogrulama Kodu
+							<br>
+							<?php echo $captcha; ?>
 						</div>
 					</div>
 					
-					<button type="submit" class="btn btn-outline-primary">Giriş Yap</button>
+					<button type="submit" class="btn btn-outline-primary btn-block">Giriş Yap</button>
 
 				</form>
 			</div>
