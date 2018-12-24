@@ -16,6 +16,17 @@
 		<h3 class="text-center" style="margin-top: 20px">Personel Listesi</h3>
 		<hr>
 
+		<?php 
+			$alert = $this->session->userdata("alert"); 
+
+			if ($alert) { ?>
+				
+				<div class="alert alert-<?php echo $alert["type"]; ?>">
+					<p><strong><?php echo $alert["title"]." "; ?></strong><?php echo $alert["message"] ?></p>
+				</div>
+
+		<?php } ?>
+
 		<a href="<?php echo base_url("Personel/insert_form") ?>" class="btn btn-primary btn-sm">Yeni Ekle</a>
 		<br><br>
 		<table class="table table-bordered table-hover table-striped">

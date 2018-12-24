@@ -58,29 +58,58 @@ class Personel extends CI_Controller{
 			$insert = $this->Personel_model->insert($data);
 
 			if ($insert) {
-			
-			echo "Ekleme işlemi başarilidir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+
+				$alert = array(
+
+					"title" 	=> "İşlem Başarılıdır",
+					"message" 	=> "Ekleme İşlemi Başarılıdır",
+					"type" 		=> "success"
+				);
+
 			}
 
 			else{
 
-				echo "Ekleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+				$alert = array(
+
+					"title" 	=> "İşlem Başarısızdır!!",
+					"message" 	=> "Ekleme İşlemi Başarısızdır",
+					"type" 		=> "danger"
+				);
+
 			}
 
 			}
 
 			else{
 
-				// resim yüklenirken sorun oluştu...
+				// 
 				echo "resim yüklenirken sorun oluştu...";
+
+				$alert = array(
+
+					"title" 	=> "İşlem Başarısızdır!!",
+					"message" 	=> "Resim yüklenirken sorun oluştu...",
+					"type" 		=> "danger"
+				);
+
 			}
 		}
 
 		else{
 
-			// Lütfen resim seçimi yapiniz...
-			echo "Lütfen boş alan bırakmayınız...";
+			$alert = array(
+
+				"title" 	=> "İşlem Başarısızdır!!",
+				"message" 	=> "Lütfen boş alan bırakmayınız...",
+				"type" 		=> "danger"
+			);
+
 		}
+
+		$this->session->set_flashdata("alert", $alert);
+
+		redirect(base_url("personel"));
 
 	}
 
@@ -123,6 +152,13 @@ class Personel extends CI_Controller{
 
 				// upload islemi sirasinda bir problem olustu...
 				echo "upload islemi sirasinda bir problem olustu...";
+
+				$alert = array(
+
+					"title" 	=> "İşlem Başarısızdır!!",
+					"message" 	=> "Upload islemi sirasinda bir problem olustu...",
+					"type" 		=> "danger"
+				);
 			}
 		}
 
@@ -149,13 +185,26 @@ class Personel extends CI_Controller{
 
 		if ($update) {
 			
-			echo "Güncelleme işlemi başarilidir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+			$alert = array(
+
+				"title" 	=> "İşlem Başarılıdır",
+				"message" 	=> "Güncelleme işlemi başarilidir..",
+				"type" 		=> "success"
+			);
 		}
 
 		else{
 
-			echo "Güncelleme işlemi başarisizdir.. Personel listesine dönmek için <a href='".base_url()."'>tiklayiniz<?a>";
+			$alert = array(
+
+				"title" 	=> "İşlem Başarısızdır!!",
+				"message" 	=> "Güncelleme işlemi başarisizdir..",
+				"type" 		=> "danger"
+			);
 		}
+
+		$this->session->set_flashdata("alert", $alert);
+		redirect(base_url("personel"));
 	}
 
 
@@ -166,8 +215,26 @@ class Personel extends CI_Controller{
 
 		if ($delete) {
 			
-			redirect("personel");
+			$alert = array(
+
+				"title" 	=> "İşlem Başarılıdır",
+				"message" 	=> "Silme işlemi başarilidir..",
+				"type" 		=> "success"
+			);
 		}
+
+		else{
+
+			$alert = array(
+
+				"title" 	=> "İşlem Başarısızdır!!",
+				"message" 	=> "Silme işlemi başarisizdir..",
+				"type" 		=> "danger"
+			);
+		}
+
+		$this->session->set_flashdata("alert", $alert);
+		redirect(base_url("personel"));
 	}
 
 
