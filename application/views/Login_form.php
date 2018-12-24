@@ -46,9 +46,7 @@
 							<?php echo $captcha; ?>
 						</div>
 					</div>
-					
 					<button type="submit" class="btn btn-outline-primary btn-block">Giriş Yap</button>
-
 				</form>
 			</div>
 		</div>

@@ -29,7 +29,6 @@
 								<input type="file" class="" name="img_id" value="<?php echo $personel->img_id; ?>">
 							</div>
 						</div>
-						
 						<div class="col-8">
 							<div class="form-group">
 								<label for=""><strong>Personelin Adı</strong></label>

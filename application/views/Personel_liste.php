@@ -11,7 +11,6 @@
 	</style>
 </head>
 <body>
-	
 	<div class="container">
 		<h3 class="text-center" style="margin-top: 20px">Personel Listesi</h3>
 		<hr>
@@ -26,9 +25,21 @@
 				</div>
 
 		<?php } ?>
-
-		<a href="<?php echo base_url("Personel/insert_form") ?>" class="btn btn-primary btn-sm">Yeni Ekle</a>
-		<br><br>
+		
+		<div class="row">
+			<div class="col-md-3">
+				<a href="<?php echo base_url("Personel/insert_form") ?>" class="btn btn-outline-primary btn-sm">Yeni Ekle</a>
+			</div>
+			<div align="right" class="col-md-4 offset-1 text-center">
+				<?php $user = $this->session->userdata("user");?>
+				<span style="font-size: 17px" class="text-primary ">Hoşgeldiniz, <?php echo $user["kullanici_adi"]; ?></span>	
+			</div>
+			<div align="right" class="col-md-3 offset-1">
+				<a href="<?php echo base_url("Kullanici/logout") ?>" class="btn btn-outline-danger btn-sm">Çıkış Yap</a>
+			</div>
+		</div>
+		
+		<br>
 		<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<th>#id</th>
@@ -90,6 +101,5 @@
 		</tbody>
 	</table>
 	</div>
-
 </body>
 </html>

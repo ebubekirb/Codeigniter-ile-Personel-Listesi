@@ -50,63 +50,53 @@ class Personel extends CI_Controller{
 
 			if ($this->upload->do_upload("img_id")) {
 
-			$img_id = $this->upload->data("file_name");
-				
-			$data = array(
-
-				"personel_ad" 	=> $personel_ad,
-				"email" 		=> $email,
-				"telefon" 		=> $telefon,
-				"departman" 	=> $departman,
-				"adres" 		=> $adres,
-				"img_id"		=> $img_id
-			);
-
-			$insert = $this->Personel_model->insert($data);
-
-			if ($insert) {
-
-				$alert = array(
-
-					"title" 	=> "İşlem Başarılıdır",
-					"message" 	=> "Ekleme İşlemi Başarılıdır",
-					"type" 		=> "success"
+				$img_id = $this->upload->data("file_name");
+					
+				$data = array(
+					"personel_ad" 	=> $personel_ad,
+					"email" 		=> $email,
+					"telefon" 		=> $telefon,
+					"departman" 	=> $departman,
+					"adres" 		=> $adres,
+					"img_id"		=> $img_id
 				);
 
-			}
+					$insert = $this->Personel_model->insert($data);
 
-			else{
+					if ($insert) {
 
-				$alert = array(
+						$alert = array(
+							"title" 	=> "İşlem Başarılıdır",
+							"message" 	=> "Ekleme İşlemi Başarılıdır",
+							"type" 		=> "success"
+						);
+					}
 
-					"title" 	=> "İşlem Başarısızdır!!",
-					"message" 	=> "Ekleme İşlemi Başarısızdır",
-					"type" 		=> "danger"
-				);
+					else{
 
-			}
+						$alert = array(
+							"title" 	=> "İşlem Başarısızdır!!",
+							"message" 	=> "Ekleme İşlemi Başarısızdır",
+							"type" 		=> "danger"
+						);
+						}
 
-			}
+				}
 
-			else{
+				else{
 
-				// 
-				echo "resim yüklenirken sorun oluştu...";
+					$alert = array(
+						"title" 	=> "İşlem Başarısızdır!!",
+						"message" 	=> "Resim yüklenirken sorun oluştu...",
+						"type" 		=> "danger"
+					);
 
-				$alert = array(
-
-					"title" 	=> "İşlem Başarısızdır!!",
-					"message" 	=> "Resim yüklenirken sorun oluştu...",
-					"type" 		=> "danger"
-				);
-
-			}
+				}
 		}
 
 		else{
 
 			$alert = array(
-
 				"title" 	=> "İşlem Başarısızdır!!",
 				"message" 	=> "Lütfen boş alan bırakmayınız...",
 				"type" 		=> "danger"
@@ -145,7 +135,6 @@ class Personel extends CI_Controller{
 			if ($upload) {
 				
 				$data = array(
-
 					"personel_ad" 	=> $this->input->post("personel_ad"),
 					"email" 		=> $this->input->post("email"),
 					"telefon" 		=> $this->input->post("telefon"),
@@ -157,11 +146,7 @@ class Personel extends CI_Controller{
 
 			else{
 
-				// upload islemi sirasinda bir problem olustu...
-				echo "upload islemi sirasinda bir problem olustu...";
-
 				$alert = array(
-
 					"title" 	=> "İşlem Başarısızdır!!",
 					"message" 	=> "Upload islemi sirasinda bir problem olustu...",
 					"type" 		=> "danger"
@@ -170,9 +155,8 @@ class Personel extends CI_Controller{
 		}
 
 		else{
-			// Resim yüklenmemiş...
-			$data = array(
 
+			$data = array(
 				"personel_ad" 	=> $this->input->post("personel_ad"),
 				"email" 		=> $this->input->post("email"),
 				"telefon" 		=> $this->input->post("telefon"),
@@ -193,7 +177,6 @@ class Personel extends CI_Controller{
 		if ($update) {
 			
 			$alert = array(
-
 				"title" 	=> "İşlem Başarılıdır",
 				"message" 	=> "Güncelleme işlemi başarilidir..",
 				"type" 		=> "success"
@@ -203,7 +186,6 @@ class Personel extends CI_Controller{
 		else{
 
 			$alert = array(
-
 				"title" 	=> "İşlem Başarısızdır!!",
 				"message" 	=> "Güncelleme işlemi başarisizdir..",
 				"type" 		=> "danger"
@@ -223,7 +205,6 @@ class Personel extends CI_Controller{
 		if ($delete) {
 			
 			$alert = array(
-
 				"title" 	=> "İşlem Başarılıdır",
 				"message" 	=> "Silme işlemi başarilidir..",
 				"type" 		=> "success"
@@ -233,7 +214,6 @@ class Personel extends CI_Controller{
 		else{
 
 			$alert = array(
-
 				"title" 	=> "İşlem Başarısızdır!!",
 				"message" 	=> "Silme işlemi başarisizdir..",
 				"type" 		=> "danger"

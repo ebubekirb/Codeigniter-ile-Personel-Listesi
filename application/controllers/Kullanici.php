@@ -121,6 +121,9 @@ class Kullanici extends CI_Controller {
 
     public function logout(){
 
+         $this->session->unset_userdata("user");
+
+         redirect(base_url("kullanici"));
     }
 
 }
