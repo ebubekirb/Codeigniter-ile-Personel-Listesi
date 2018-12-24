@@ -32,6 +32,7 @@ class Kullanici extends CI_Controller{
 
         	$viewData["captcha"] = $captcha["image"];
 
+                $this->session->set_flashdata("code", $captcha["word"]);
         	$this->load->view("Login_form", $viewData);
         }
 
@@ -51,7 +52,20 @@ class Kullanici extends CI_Controller{
                 }
 
                 else{
-                        echo $email."-".$pass."-".$captcha;
+                        if ($captcha == $this->session->userdata("code")) {
+                                
+                                // Database işlemleri
+                                echo "başarılı"; die();
+                        }
+
+                        else{
+
+                                $alert = array(
+                                "title"         => "İşlem Başarısız",
+                                "message"       => "Doğrulama kodunu yanlış girdiniz!!!",
+                                "type"          => "danger"
+                        );
+                        }
 
                 }
 
