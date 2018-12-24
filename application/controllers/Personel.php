@@ -96,21 +96,54 @@ class Personel extends CI_Controller{
 
 	public function update($id){
 
+		$img = $_FILES["img_id"]["name"];
+
+		if ($img) {
+
+			$config["upload_path"] 		= "uploads/";
+			$config["allowed_types"]	= "gif|png|jpg";
+
+			$this->load->library("upload", $config);
+			$upload = $this->upload->do_upload("img_id"); 
+
+			if ($upload) {
+				
+				$data = array(
+
+					"personel_ad" 	=> $this->input->post("personel_ad"),
+					"email" 		=> $this->input->post("email"),
+					"telefon" 		=> $this->input->post("telefon"),
+					"departman" 	=> $this->input->post("departman"),
+					"adres" 		=> $this->input->post("adres"),
+					"img_id"		=> $this->upload->data("file_name")
+				);
+			}
+
+			else{
+
+				// upload islemi sirasinda bir problem olustu...
+				echo "upload islemi sirasinda bir problem olustu...";
+			}
+		}
+
+		else{
+			// Resim yüklenmemiş...
+			$data = array(
+
+				"personel_ad" 	=> $this->input->post("personel_ad"),
+				"email" 		=> $this->input->post("email"),
+				"telefon" 		=> $this->input->post("telefon"),
+				"departman" 	=> $this->input->post("departman"),
+				"adres" 		=> $this->input->post("adres")
+			);
+		}
+
 		$where = array(
 
 			"id" => $id
 		);
 
-
-		$data = array(
-
-			"personel_ad" 	=> $this->input->post("personel_ad"),
-			"email" 		=> $this->input->post("email"),
-			"telefon" 		=> $this->input->post("telefon"),
-			"departman" 	=> $this->input->post("departman"),
-			"adres" 		=> $this->input->post("adres")
-		);
-
+		
 		$update = $this->Personel_model->update($where, $data);
 
 
