@@ -13,21 +13,31 @@
 				<h3 class="text-center">Kullanıcı Girişi</h3>
 				<hr>
 
+				<?php 
+					$alert = $this->session->userdata("alert"); 
+
+					if ($alert) { ?>
+						
+						<div class="alert alert-<?php echo $alert["type"]; ?>">
+							<p><strong><?php echo $alert["title"]." "; ?></strong><?php echo $alert["message"] ?></p>
+						</div>
+				<?php } ?>
+
 				<form action="<?php echo base_url("kullanici/login") ?>" method="post">
 					<div class="form-group">
-					<label for="">E-posta Adresi</label>
+					<label for=""><strong>E-posta Adresi</strong></label>
 					<input type="text" class="form-control" name="email">
 					</div>
 
 					<div class="form-group">
-						<label for="">Şifre</label>
+						<label for=""><strong>Şifre</strong></label>
 						<input type="password" class="form-control" name="pass">
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="">Doğrulama Kodu</label>
+								<label for=""><strong>Doğrulama Kodu</strong></label>
 								<input type="password" class="form-control" name="captcha">
 							</div>
 						</div>

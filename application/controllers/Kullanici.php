@@ -2,11 +2,11 @@
 
 class Kullanici extends CI_Controller{
 
-	public function index(){
+        public function index(){
 
-		$this->load->helper("captcha");
+        	$this->load->helper("captcha");
 
-		$vals = array(
+        	$vals = array(
         'word'          => '',
         'img_path'      => 'captcha_images/',
         'img_url'       => base_url("captcha_images"),
@@ -26,24 +26,44 @@ class Kullanici extends CI_Controller{
                 'text' => array(0, 0, 0),
                 'grid' => array(255, 40, 40)
         )
-	);
+        );
 
-		$captcha = create_captcha($vals);
+        	$captcha = create_captcha($vals);
 
-		$viewData["captcha"] = $captcha["image"];
+        	$viewData["captcha"] = $captcha["image"];
 
-		$this->load->view("Login_form", $viewData);
-	}
+        	$this->load->view("Login_form", $viewData);
+        }
 
-	public function login(){
+        public function login(){
+
+                $email = $this->input->post("email");
+                $pass = $this->input->post("pass");
+                $captcha = $this->input->post("captcha");
+
+                if (!$email || !$pass || !$captcha ) {
+                        
+                        $alert = array(
+                                "title"         => "İşlem Başarısız",
+                                "message"       => "Lütfen tüm alanları eksiksiz olarak doldurunuz!!!",
+                                "type"          => "danger"
+                        );
+                }
+
+                else{
+                        echo $email."-".$pass."-".$captcha;
+
+                }
+
+                $this->session->set_flashdata("alert", $alert);
+                redirect(base_url("kullanici"));
+
+        }
+
+        public function logout(){
 
 
-	}
-
-	public function logout(){
-
-
-	}
+        }
 }
 
  ?>
