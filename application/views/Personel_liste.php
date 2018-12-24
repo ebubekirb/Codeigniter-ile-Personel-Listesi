@@ -4,6 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Personel Listesi</title>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>">
+	<style>
+		*{
+			font-size: 15px;
+		}
+	</style>
 </head>
 <body>
 	
@@ -16,6 +21,7 @@
 		<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<th>#id</th>
+			<th>Resim</th>
 			<th>Personel Adı 
 				<a href="<?php echo base_url("personel/order/personel_ad/ASC") ?>">[a-Z]</a>
 				<a href="<?php echo base_url("personel/order/personel_ad/DESC") ?>">[Z-a]</a>
@@ -43,13 +49,22 @@
 				<a href="<?php echo base_url("personel/order/adres/DESC") ?>">[Z-a]</a>
 			</th>
 
-			<td>İşlemler</td>
-			
+			<th>İşlemler</th>
+
 		</thead>
 		<tbody>
 			<?php foreach($list as $row){ ?>
 			<tr>
 				<td><?php echo $row->id; ?></td>
+				<td>
+					<?php if (!empty($row->img_id)) { ?>
+						<img width="50px" src="<?php echo base_url("uploads/$row->img_id") ?>" alt="">	
+					<?php }
+
+					else { ?>
+						<img width="50px" src="<?php echo base_url("assets/img/default.png") ?>" alt="">
+					<?php } ?>
+				</td>
 				<td><?php echo $row->personel_ad; ?></td>
 				<td><?php echo $row->email; ?></td>
 				<td><?php echo $row->telefon ?></td>
