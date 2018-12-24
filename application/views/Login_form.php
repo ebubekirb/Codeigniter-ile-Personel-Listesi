@@ -31,14 +31,14 @@
 
 					<div class="form-group">
 						<label for=""><strong>Şifre</strong></label>
-						<input type="password" class="form-control" name="pass">
+						<input type="password" class="form-control" name="sifre">
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for=""><strong>Doğrulama Kodu</strong></label>
-								<input type="password" class="form-control" name="captcha">
+								<input type="text" class="form-control" name="captcha">
 							</div>
 						</div>
 						<div class="col-md-3">

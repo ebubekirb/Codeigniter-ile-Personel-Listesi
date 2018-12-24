@@ -4,9 +4,9 @@ class Kullanici extends CI_Controller{
 
         public function index(){
 
-        	$this->load->helper("captcha");
+	$this->load->helper("captcha");
 
-        	$vals = array(
+	$vals = array(
         'word'          => '',
         'img_path'      => 'captcha_images/',
         'img_url'       => base_url("captcha_images"),
@@ -39,10 +39,10 @@ class Kullanici extends CI_Controller{
         public function login(){
 
                 $email = $this->input->post("email");
-                $pass = $this->input->post("pass");
+                $sifre = $this->input->post("sifre");
                 $captcha = $this->input->post("captcha");
 
-                if (!$email || !$pass || !$captcha ) {
+                if (!$email || !$sifre || !$captcha ) {
                         
                         $alert = array(
                                 "title"         => "İşlem Başarısız",
@@ -54,11 +54,33 @@ class Kullanici extends CI_Controller{
                 else{
                         if ($captcha == $this->session->userdata("code")) {
                                 
-                                // Database işlemleri
-                                echo "başarılı"; die();
+                                $where = array(
+
+                                        "email"        => $email,
+                                        "sifre"         => $sifre
+                                );
+
+                                $this->load->model("Kullanici_model");
+                                $row = $this->Kullanici_model->get($where);
+
+                                if ($row) {
+                                        
+                                        redirect("personel");
+                                }
+
+                                else{
+
+                                        $alert = array(
+                                        "title"         => "İşlem Başarısız",
+                                        "message"       => "Böyle bir kullanıcı bulunamadı!!!",
+                                        "type"          => "danger"
+                                );
+                                }
                         }
 
-                        else{
+                        
+
+                        else {
 
                                 $alert = array(
                                 "title"         => "İşlem Başarısız",
@@ -66,6 +88,8 @@ class Kullanici extends CI_Controller{
                                 "type"          => "danger"
                         );
                         }
+
+                        $this->session->set_flashdata("alert", $alert);
 
                 }
 
