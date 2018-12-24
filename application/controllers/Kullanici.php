@@ -57,7 +57,7 @@ class Kullanici extends CI_Controller{
                                 $where = array(
 
                                         "email"        => $email,
-                                        "sifre"         => $sifre
+                                        "sifre"         => md5($sifre)
                                 );
 
                                 $this->load->model("Kullanici_model");
